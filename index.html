@@ -1,31 +1,16 @@
-<html>
-<head>
-<title>Hi there</title>
-</head>
-<body>
-it's me
-  
-  <a href="youtubetest.html">does this work?</a>
-  
-  <div id="disqus_thread"></div>
-<script>
+---
+layout: post
+title: Homepage
+---
+Hello world
 
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://myjupyter.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</body>
-</html>
+{{site.description}}
+
+{% assign doclist = site.static_files | sort: 'modified_time' | reverse  %}
+    <ul>
+       {% for doc in doclist %}
+            {% if doc.name contains '.html' %}
+                <li><a href="{{ site.baseurl }}{{ doc.name }}">{{ doc.basename }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
